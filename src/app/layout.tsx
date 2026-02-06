@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-    title: "JOKARIZ | Vibe Coding Edition",
+    title: "JOKARIZ",
     description: "From Goldman Sachs to Creator Economy",
     icons: {
         icon: "/favicon-32x32.png",
