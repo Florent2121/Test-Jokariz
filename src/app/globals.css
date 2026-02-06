@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+/* Image Reveal Effect: Grayscale -> Color on Hover */
+.img-reveal {
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.5s ease-in-out;
+}
+
+.img-reveal:hover {
+  filter: grayscale(0%) contrast(1);
+}
