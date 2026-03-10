@@ -5,7 +5,7 @@ import { PROJECTS } from "@/lib/projects";
 
 export function EcosystemSection() {
     return (
-        <section className="w-full bg-background py-24 md:py-32 flex flex-col items-center">
+        <section className="w-full bg-background pt-0 pb-24 md:pb-32 flex flex-col items-center">
 
             {/* Grid Container - 3x3 for large screens */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
