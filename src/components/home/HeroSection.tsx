@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { Button } from "@/components/ui/Button";
 
 export function HeroSection() {
     const { scrollY } = useScroll();
@@ -23,26 +24,20 @@ export function HeroSection() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="flex flex-col items-start text-left md:w-3/5 space-y-6 z-20 max-w-full"
                 >
-                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9]">
-                        <span className="block">JE VEUX</span>
+                    <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tight uppercase text-primary leading-[0.9]">
+                        <span className="block">UNE MISSION :</span>
                         <span className="block">RENDRE</span>
                         <span className="block">LE SUCCÈS</span>
                         <span className="block text-accent">ACCESSIBLE</span>
                         <span className="block text-accent">À TOUS</span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-400 max-w-lg">
+                    <p className="text-base md:text-lg text-secondary leading-relaxed max-w-lg">
                         De Goldman Sachs à la Creator Economy.
                     </p>
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                            document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="px-8 py-4 bg-accent text-white font-bold rounded-full text-lg shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:shadow-[0_0_40px_rgba(0,85,255,0.7)] transition-shadow"
-                    >
-                        REJOINDRE L'AVENTURE
-                    </motion.button>
+                    <Button href="/contact" variant="primary">
+                        Nous contacter
+                    </Button>
+
                 </motion.div>
 
 

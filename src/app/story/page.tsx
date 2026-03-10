@@ -3,103 +3,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { ArrowDown } from "lucide-react";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 
-// Timeline Data
-const TIMELINE_STEPS = [
-    {
-        year: "1991",
-        title: "L’ENFANCE",
-        description: `Je grandis entre Neuilly-sur-Seine et le 16ᵉ arrondissement de Paris.
-Ma scolarité se déroule dans un environnement privilégié, au sein d’un établissement élitiste.
-Les trajectoires sont connues, les attentes explicites.
-On apprend tôt comment les choses fonctionnent.
-En arrière-plan, une idée se construit en moi:
-faire quelque chose d’utile pour la société.`
-        ,
-        image: "/images/projects/conferences.jpg",
-    },
-    {
-        year: "2011",
-        title: "UNE RENTRÉE À L’ESCP",
-        description: `Après un parcours scolaire irrégulier, je décide de m’engager davantage dans le travail. La classe préparatoire impose un rythme, une méthode, une discipline. J’intègre ensuite l’ESCP.`,
-
-        image: "/images/projects/jokacorp.png",
-    },
-    {
-        year: "2015",
-        title: "LA RÉUSSITE COMME POINT DE BASCULE",
-        description: `À 25 ans, je décroche un poste de structurer après m’être invité à des entretiens où je n’étais pas attendu, une première pour un étudiant d’école de commerce.
-        J’intègre ensuite Goldman Sachs à New York.
-Un cadre clair, structuré, exigeant.
-La réussite y est lisible, mesurable.
-Avec le temps, une forme de décalage apparaît chez moi.
-Le système fonctionne.
-Le sens, moins.`,
-        image: "/images/projects/un-stagiaire-presque-parfait.jpg",
-
-    },
-    {
-        year: "2022",
-        title: `UN NOUVEAU TERRAIN DE JEU`,
-        description: `Après 7 ans de travail, je quitte Goldman Sachs.
-Sans repères traditionnels, les jeux vidéos deviennent un espace d’apprentissage inattendu.
-Dans League of Legends, les règles sont claires, les classements transparents, les efforts mesurables.
-Ce challenge m’amène à atteindre le rang Master, soit le top 0,5 % des joueurs dans le monde, un accomplissement distinct de tout ce que j’avais connu jusqu’ici.`,
-        image: "/images/projects/paris-creator-week.png",
-    },
-    {
-        year: "2023",
-        title: "MÉTIER DE RÊVE",
-        description: `En parcourant les écoles pour raconter mon histoire, je fais un constat simple :
-beaucoup d’étudiants manquent de repères pour comprendre les réalités du marché du travail.
-
-Métiers de Rêve naît de ce besoin de compréhension.
-Comment certaines carrières se construisent.
-Ce qui relève du choix, du contexte ou des opportunités initiales.
-Mettre des mots sur des parcours souvent idéalisés.`,
-        image: "/images/projects/jokacorp.png",
-
-    },
-    {
-        year: "2024",
-        title: "PARIS CREATOR WEEK",
-        description: `La Creator Economy prend de plus en plus d’ampleur en France, mais aucun rendez-vous ne permet encore à cet écosystème de se structurer.
-Moi-même au cœur de ces échanges, je réalise qu’un point de rencontre commun manque.
-La Paris Creator Week naît de ce besoin :
-rassembler les créateurs, les plateformes, les marques, et offrir un cadre pour se rencontrer, échanger et prendre du recul.`,
-        image: "/images/projects/paris-creator-week.JPG",
-
-    },
-    {
-        year: "2025",
-        title: "UN STAGIAIRE PRESQUE PARFAIT",
-        description: `En échangeant avec les étudiants et les jeunes actifs, une frustration revient souvent : l’accès aux opportunités est flou, parfois décourageant, les critères rarement expliqués.
-Je décide alors de rendre visibles les règles du jeu.
-Analyser des CV, simuler des entretiens, et ouvrir l’accès à une première opportunité.`,
-        image: "/images/projects/un-stagiaire-presque-parfait.jpg",
-
-    },
-    {
-        year: "2025",
-        title: "THE UNICORN",
-        description: `Pour aller plus loin dans l’accompagnement vers la réussite, je voulais créer un espace où une idée peut être confrontée au réel.
-The Unicorn devient un rendez-vous en live, puis un événement en présentiel, réunissant plus de 200 étudiants à l’Albert School.
-Un lieu pour présenter un projet, recevoir un regard extérieur et transformer une intuition en opportunité réelle.`,
-        image: "/images/projects/the-unicorn.png",
-
-    },
-    {
-        year: "2026",
-        title: "THE PATCH",
-        description: `À force d’observer les recrutements et les opportunités manquées, un constat s’impose : les outils actuels évaluent mal les compétences réelles.
-The Patch part de cette limite et propose
- une autre approche, inspirée des jeux vidéo : évaluer les compétences en conditions proches du réel,
-et faire du mérite un signal lisible.`,
-        image: "/images/projects/the-patch.png",
-
-    },
-];
+import { Timeline } from "@/components/story/Timeline";
 
 export default function StoryPage() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -111,184 +18,138 @@ export default function StoryPage() {
     return (
         <main ref={containerRef} className="bg-background min-h-screen pb-40">
 
-            {/* HERO SECTION - Reduced Spacing */}
-            <section className="relative pt-32 pb-0 overflow-hidden">
-                <SectionWrapper>
-                    <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-0">
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="font-display text-4xl md:text-6xl lg:text-8xl font-bold uppercase tracking-tighter mb-6"
-                        >
-                            MON <span className="text-accent">PARCOURS</span>
-                        </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-xl md:text-2xl text-secondary max-w-2xl"
-                        >
-                            D’où je viens, ce que j’ai compris, et ce que je construis aujourd’hui.
-                        </motion.p>
+            {/* HERO SECTION MATCHING REFERENCE */}
+            <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-background">
+                <img
+                    src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=2000&auto=format&fit=crop"
+                    alt="Hero Background"
+                    className="absolute inset-0 w-full h-full object-cover opacity-50"
+                />
+                <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                <div className="relative z-10 flex flex-col items-center justify-center w-full h-full pointer-events-none">
+                    <h1
+                        className="font-display text-7xl md:text-8xl lg:text-[12rem] font-black tracking-tight text-accent uppercase mix-blend-screen text-center px-4 leading-none"
+                    >
+                        JOKARIZ
+                    </h1>
+                </div>
+
+                {/* Scroll Indicator */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-20 cursor-pointer" onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}>
+                    <span className="text-white text-xs md:text-sm font-medium tracking-widest uppercase mb-2">Scroll</span>
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <ArrowDown className="text-accent w-6 h-6 md:w-8 md:h-8" />
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* INVESTOR, INNOVATOR, DISRUPTOR SECTION */}
+            <section className="relative bg-black pt-12 md:pt-16 lg:pt-24 z-20">
+                <SectionWrapper className="pb-0 md:pb-0 z-20 relative">
+                    <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center max-w-7xl mx-auto">
+
+                        {/* Title on the Left -> OVERLAPS VIDEO */}
+                        <div className="order-1 md:order-1 relative z-20 pb-2 md:pb-4 lg:pb-6">
+                            <h2 className="font-display text-5xl md:text-6xl lg:text-[6rem] font-black text-[#0055FF] uppercase leading-[0.80] tracking-tighter drop-shadow-2xl">
+                                INVESTOR.<br />INNOVATOR.<br />DISRUPTOR.
+                            </h2>
+                        </div>
+
+                        {/* Text on the Right -> DOES NOT OVERLAP (Stays above) */}
+                        <div className="order-2 md:order-2 relative z-20 pb-8 md:pb-16 lg:pb-20 lg:pl-16">
+                            <p className="text-secondary text-base md:text-lg leading-relaxed max-w-sm">
+                                Jokariz est ancien trader chez Goldman Sachs devenu entrepreneur et créateur de contenu. Il anime Métiers de Rêve, un podcast qui décrypte les trajectoires de personnalités à fort impact pour rendre accessibles les carrières d’exception.
+                            </p>
+                        </div>
+
                     </div>
                 </SectionWrapper>
-            </section>
 
-            {/* VISION DETAILED SECTION */}
-            <section className="relative pb-24 md:pb-32 overflow-hidden">
-                <SectionWrapper>
-                    <div className="grid md:grid-cols-2 gap-10 items-start">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="bg-zinc-900/30 border border-white/5 p-8 rounded-2xl backdrop-blur-sm"
+                {/* Video with Margins and Negative Top Margin for Overlap of the LEFT title ONLY */}
+                <div className="relative w-full px-4 md:px-8 lg:px-12 -mt-10 md:-mt-16 lg:-mt-20 z-10 pointer-events-none">
+                    <div className="w-full aspect-video md:h-[65vh] relative overflow-hidden md:rounded-xl shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover opacity-90"
                         >
-                            <h3 className="font-display text-3xl font-bold uppercase mb-6 text-white">
-                                Les trajectoires semblaient <span className="text-accent">logiques</span>, presque <span className="text-accent">naturelles.</span>
-                            </h3>
-                            <p className="text-lg text-secondary leading-relaxed mb-6">
-                                J’ai grandi dans un monde où les trajectoires semblaient logiques, presque naturelles.
-                                Avec le temps, j’ai compris qu’elles étaient surtout rendues possibles par un ensemble de règles, de codes et d’avantages invisibles.
-                            </p>
-                            <p className="text-lg text-secondary leading-relaxed">
-                                Je suis né avec beaucoup d’avance.
-                                J’ai longtemps cru que c’était du mérite.
-                            </p>
-                            <p className="text-lg text-secondary leading-relaxed">
-                                Mon histoire raconte comment j’ai mis des années à comprendre la différence,
-                                et ce que j’essaie d’en faire aujourd’hui.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="bg-zinc-900/30 border border-white/5 p-8 rounded-2xl backdrop-blur-sm"
-                        >
-                            <h3 className="font-display text-3xl font-bold uppercase mb-6 text-white">
-                                Cette prise de conscience <br /><span className="text-accent">a déplacé mon regard</span>
-                            </h3>
-                            <p className="text-lg text-secondary leading-relaxed mb-6">
-                                Si le succès n’est pas uniquement une affaire de talent, alors le rendre plus accessible ne consiste pas à promettre des raccourcis, mais à rendre les règles plus lisibles.
-
-                                Mon ambition est simple : ouvrir l’accès à l’information, aux opportunités et aux outils qui permettent à chacun de construire sa trajectoire, indépendamment de son point de départ.
-                            </p>
-                        </motion.div>
+                            <source src="/vid%C3%A9o/vide%CC%81o%20accueil.mov" />
+                            Votre navigateur ne supporte pas la balise vidéo.
+                        </video>
+                        <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
                     </div>
-                </SectionWrapper>
-            </section>
-
-            {/* SCROLL-TELLING TIMELINE */}
-            <section className="relative">
-                {/* Central Line */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden md:block" />
-                <div className="absolute left-[20px] top-0 bottom-0 w-px bg-white/10 md:hidden" />
-
-                {/* Progress Line */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden md:block">
-                    <motion.div
-                        style={{ scaleY: scrollYProgress }}
-                        className="absolute top-0 left-0 w-full bg-accent origin-top h-full"
-                    />
-                </div>
-                <div className="absolute left-[20px] top-0 bottom-0 w-px md:hidden">
-                    <motion.div
-                        style={{ scaleY: scrollYProgress }}
-                        className="absolute top-0 left-0 w-full bg-accent origin-top h-full"
-                    />
-                </div>
-
-                <div className="space-y-32 py-20 relative">
-                    {TIMELINE_STEPS.map((step, index) => (
-                        <TimelineItem key={step.year} step={step} index={index} />
-                    ))}
                 </div>
             </section>
+
+            {/* BIO & ACHIEVEMENTS SECTION (Reference-based) */}
+            <section className="relative bg-black pt-32 md:pt-48 lg:pt-64 pb-20 md:pb-32 z-10 w-full overflow-hidden">
+                <div className="max-w-[1500px] mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 lg:gap-24 items-start relative">
+
+                    {/* LEFT COLUMN: Image ONLY */}
+                    <div className="flex flex-col h-full">
+                        {/* Portrait Image - Without grayscale filter */}
+                        <div className="relative w-full aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-xl xl:max-w-lg mx-auto md:mx-0">
+                            <img
+                                src="/images/hero-joka.png"
+                                alt="Jokariz Portrait"
+                                className="absolute inset-0 w-full h-full object-cover object-top"
+                            />
+                            {/* Fade out at the bottom to blend into the black background */}
+                            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                        </div>
+                    </div>
+
+                    {/* RIGHT COLUMN: Bio Text & List */}
+                    <div className="flex flex-col space-y-12 md:pt-4">
+                        {/* Top Paragraphs */}
+                        <div className="space-y-6">
+                            <p className="text-secondary text-base md:text-lg leading-relaxed">
+                                Jokariz s’intéresse aux projets entrepreneuriaux liés à l’éducation, aux médias et à la transmission des savoirs.
+                            </p>
+                            <p className="text-secondary text-base md:text-lg leading-relaxed">
+                                À travers ses différentes activités, il accompagne ponctuellement des initiatives portées par de jeunes fondateurs et soutient des projets en lien avec l’orientation, la finance et l’employabilité des nouvelles générations.
+                            </p>
+                            <p className="text-secondary text-base md:text-lg leading-relaxed">
+                                En parallèle du podcast Métiers de Rêve, il développe progressivement des projets à l’intersection du contenu, de la pédagogie et de l’entrepreneuriat.
+                            </p>
+                        </div>
+
+                        {/* List of achievements */}
+                        <div className="flex flex-col w-full border-t border-white/10 mt-12 md:mt-24">
+                            {/* Achievement 1 */}
+                            <div className="py-6 md:py-8 border-b border-white/10">
+                                <p className="text-secondary text-base md:text-lg leading-relaxed">
+                                    <span className="text-accent font-semibold">Jokariz a fondé Jokariz Corporation</span>, une structure dédiée au développement de projets médias et entrepreneuriaux autour de la transmission, de l’excellence et de l’orientation professionnelle.
+                                </p>
+                            </div>
+
+                            {/* Achievement 2 */}
+                            <div className="py-6 md:py-8 border-b border-white/10">
+                                <p className="text-secondary text-base md:text-lg leading-relaxed">
+                                    <span className="text-accent font-semibold">Il a créé Paris Creator Week</span>, un événement réunissant créateurs, entrepreneurs et acteurs de l’écosystème digital afin de favoriser les échanges, les opportunités et les collaborations.
+                                </p>
+                            </div>
+
+                            {/* Achievement 3 */}
+                            <div className="py-6 md:py-8 border-b border-white/10">
+                                <p className="text-secondary text-base md:text-lg leading-relaxed">
+                                    <span className="text-accent font-semibold">Il est également à l’origine de The Patch</span>, une initiative pensée pour accompagner les nouvelles générations dans leur compréhension des parcours professionnels et des environnements à haute exigence.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* SCROLL-TELLING TIMELINE COMPONENT */}
+            <Timeline />
         </main>
     );
 }
 
-function TimelineItem({ step, index }: { step: any, index: number }) {
-    const isEven = index % 2 === 0;
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"]
-    });
 
-    // Parallax effect: Image moves vertically
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
-    return (
-        <div ref={ref} className="relative container mx-auto px-6">
-
-            {/* CENTER YEAR - The Anchor with MASKING BACKGROUND */}
-            <div className="flex justify-center mb-12 relative z-10 pointer-events-none">
-                <div className="bg-background px-6 py-4 border border-accent/20 rounded-xl md:rounded-none md:border-0 md:p-4">
-                    <span className="font-display font-bold text-6xl md:text-9xl text-accent tracking-tighter shadow-black drop-shadow-2xl leading-none">
-                        {step.year}
-                    </span>
-                </div>
-            </div>
-
-            {/* For odd items (isEven=false), we want Image (Right Side) first, then Text (Left Side). 
-                So we use flex-col-reverse. 
-                For even items (isEven=true), we want Image (Left Side) first, then Text (Right Side).
-                So we use flex-col.
-                Wait, for Even: Left is Image, Right is Text. flex-col puts Left first. Correct.
-                For Odd: Left is Text, Right is Image. flex-col puts Left first (Text). We want Image first. So flex-col-reverse.
-            */}
-            <div className={`flex ${isEven ? 'flex-col' : 'flex-col-reverse'} md:flex-row items-center md:items-start gap-12`}>
-
-                {/* LEFT SIDE */}
-                <div className="w-full md:w-[45%] flex flex-col items-center md:items-end text-center md:text-right">
-                    {isEven ? (
-                        <motion.div style={{ y }} className="w-full space-y-4">
-                            <div className="relative aspect-[4/3] w-full md:w-[80%] rounded-xl overflow-hidden md:ml-auto border border-white/5">
-                                <Image
-                                    src={step.image}
-                                    alt={step.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </motion.div>
-                    ) : (
-                        <div className="space-y-4 md:pt-12 md:pr-12">
-                            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase">{step.title}</h2>
-                            <p className="text-secondary text-lg leading-relaxed whitespace-pre-line">{step.description}</p>
-                        </div>
-                    )}
-                </div>
-
-                {/* CENTER SPACER to cross the line */}
-                <div className="hidden md:block w-[10%]" />
-
-                {/* RIGHT SIDE */}
-                <div className="w-full md:w-[45%] flex flex-col items-center md:items-start text-center md:text-left">
-                    {isEven ? (
-                        <div className="space-y-4 md:pt-12 md:pl-12">
-                            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase">{step.title}</h2>
-                            <p className="text-secondary text-lg leading-relaxed whitespace-pre-line">{step.description}</p>
-                        </div>
-                    ) : (
-                        <motion.div style={{ y }} className="w-full space-y-4">
-                            <div className="relative aspect-[4/3] w-full md:w-[80%] rounded-xl overflow-hidden md:mr-auto border border-white/5">
-                                <Image
-                                    src={step.image}
-                                    alt={step.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </motion.div>
-                    )}
-                </div>
-
-            </div>
-        </div>
-    );
-}

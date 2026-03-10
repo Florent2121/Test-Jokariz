@@ -39,11 +39,11 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                             animate={{ opacity: 1, y: 0 }}
                             className="flex items-center justify-center gap-3 mb-4"
                         >
-                            <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-mono uppercase tracking-widest text-white/60">
+                            <span className="px-4 py-1.5 rounded-full border border-white/10 bg-surface text-sm font-mono uppercase tracking-widest text-secondary">
                                 {project.category}
                             </span>
-                            <span className="w-1 h-1 rounded-full bg-white/30" />
-                            <span className="text-sm font-mono text-white/40">
+                            <span className="w-1 h-1 rounded-full bg-white/20" />
+                            <span className="text-sm font-mono text-secondary">
                                 {project.year}
                             </span>
                         </motion.div>
@@ -52,7 +52,7 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="font-display text-4xl md:text-6xl lg:text-8xl font-bold uppercase tracking-tighter text-white"
+                            className="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-primary"
                         >
                             {project.title}
                         </motion.h1>
@@ -61,7 +61,7 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto"
+                            className="text-base md:text-lg text-secondary max-w-2xl mx-auto leading-relaxed"
                         >
                             {project.description}
                         </motion.p>
@@ -80,18 +80,18 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                         className="space-y-12"
                     >
                         <div className="prose prose-invert prose-lg">
-                            <p className="text-zinc-200 text-xl md:text-2xl leading-relaxed mb-8 font-medium whitespace-pre-line">
+                            <p className="text-primary text-xl md:text-2xl leading-relaxed mb-8 font-medium whitespace-pre-line">
                                 {project.longDescription}
                             </p>
 
                             {project.bullets && (
-                                <div className="text-white/70 text-base md:text-lg mb-8 bg-white/5 p-6 rounded-xl border border-white/5 whitespace-pre-line leading-relaxed font-mono">
+                                <div className="text-secondary text-base md:text-lg mb-8 bg-surface p-6 border border-white/5 whitespace-pre-line leading-relaxed">
                                     {project.bullets}
                                 </div>
                             )}
 
                             {project.subText && (
-                                <p className="text-white/60 text-base md:text-lg border-l-2 border-accent pl-4 whitespace-pre-line">
+                                <p className="text-secondary text-base md:text-lg border-l-2 border-accent pl-4 whitespace-pre-line">
                                     {project.subText}
                                 </p>
                             )}
@@ -103,15 +103,15 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                                 {project.stats.map((stat, i) => (
                                     <div
                                         key={i}
-                                        className="bg-white/5 border border-white/5 p-6 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-colors"
+                                        className="bg-white/5 border border-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-colors"
                                     >
                                         <div className="text-accent mb-2">
                                             <TrendingUp className="w-5 h-5" />
                                         </div>
-                                        <div className="text-3xl font-bold font-display text-white mb-1">
+                                        <div className="text-3xl font-bold font-display text-primary mb-1">
                                             {stat.value}
                                         </div>
-                                        <div className="text-sm font-mono text-white/40 uppercase tracking-wider">
+                                        <div className="text-sm font-mono text-secondary uppercase tracking-wider">
                                             {stat.label}
                                         </div>
                                     </div>
@@ -122,10 +122,10 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                         <div className="pt-8">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center gap-2 text-white border-b border-white/30 pb-1 hover:border-white transition-colors"
+                                className="group inline-flex items-center justify-center font-display font-bold uppercase tracking-widest transition-all duration-500 rounded-full bg-accent text-white border border-transparent shadow-[0_0_20px_rgba(0,85,255,0.4)] hover:shadow-[0_0_40px_rgba(0,85,255,0.6)] hover:bg-white hover:text-black px-6 py-3 text-sm md:text-base gap-2"
                             >
                                 En savoir plus
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
                     </motion.div>
@@ -135,7 +135,7 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.5 }}
-                        className="relative aspect-square md:aspect-[4/5] bg-zinc-900 rounded-3xl overflow-hidden border border-white/10"
+                        className="relative aspect-square md:aspect-[4/5] bg-zinc-900 overflow-hidden"
                     >
                         {project.image ? (
                             <Image
@@ -159,19 +159,19 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                 <SectionWrapper className="py-12">
                     <div className="flex justify-between items-center">
                         <Link
-                            href="/#ecosysteme"
-                            className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
+                            href="/projets"
+                            className="group inline-flex items-center justify-center font-display font-bold uppercase tracking-widest transition-all duration-500 rounded-full bg-transparent text-primary border border-white/20 hover:bg-white hover:text-black hover:border-white px-6 py-3 text-xs md:text-sm gap-2"
                         >
-                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                            <span className="hidden md:inline font-mono uppercase text-sm">Retour</span>
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                            <span className="hidden md:inline">Retour</span>
                         </Link>
 
                         <Link
                             href={`/projets/${nextProject.slug}`}
                             className="group text-right"
                         >
-                            <span className="block text-xs font-mono text-white/40 mb-1 uppercase tracking-widest">Projet Suivant</span>
-                            <div className="flex items-center gap-3 text-xl md:text-2xl font-bold font-display text-white group-hover:text-accent transition-colors">
+                            <span className="block text-xs font-mono text-secondary mb-1 uppercase tracking-widest">Projet Suivant</span>
+                            <div className="flex items-center justify-end gap-3 text-xl md:text-2xl font-bold font-display text-primary group-hover:text-accent transition-colors">
                                 {nextProject.title}
                                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                             </div>

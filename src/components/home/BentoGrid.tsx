@@ -1,9 +1,8 @@
 "use client";
 
 import { Card } from "@/components/ui/Card";
-import { Link } from "lucide-react"; // Wait, Link is handled by Next.js, lucide is for icons
-import NextLink from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import NextLink from "next/link";
 
 export function BentoGrid() {
     return (
@@ -30,11 +29,11 @@ export function BentoGrid() {
                 <NextLink href="/projects" className="col-span-1 row-span-1 md:row-span-2 group">
                     <Card className="h-full min-h-[300px] w-full p-8 flex flex-col justify-between hover:border-accent/50 transition-colors duration-300">
                         <div className="flex justify-between items-start">
-                            <span className="text-sm font-mono text-secondary uppercase tracking-widest">02. Ecosystem</span>
+                            <span className="text-sm font-mono text-secondary uppercase tracking-widest">02. Initiatives</span>
                             <ArrowUpRight className="w-6 h-6 text-secondary group-hover:text-accent transition-colors" />
                         </div>
                         <div>
-                            <h2 className="font-display text-2xl md:text-3xl font-bold uppercase mb-2">L'Écosystème</h2>
+                            <h2 className="font-display text-2xl md:text-3xl font-bold uppercase mb-2">Nos initiatives</h2>
                             <p className="text-secondary text-sm">
                                 Jokariz Corp, PCW, The Unicorn.
                             </p>

@@ -3,23 +3,24 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { X, ChevronDown, ChevronRight } from "lucide-react";
+import { X, ChevronDown, Menu } from "lucide-react";
 
 const MENU_ITEMS = [
     { label: "Home", href: "/" },
     { label: "MON PARCOURS", href: "/story" },
     {
-        label: "L'Écosystème",
-        href: "/projets", // Renamed from /projects to /projets
-        // Wait, listing page is at src/app/projects/page.tsx. So /projects is correct for the parent.
-        // But children should point to /projets/[slug].
+        label: "Nos initiatives",
+        href: "/projets",
         children: [
-            { label: "Métier de rêve", href: "/projets/metier-de-reve" },
-            { label: "The Unicorn", href: "/projets/the-unicorn" },
-            { label: "Stagiaire Presque Parfait", href: "/projets/un-stagiaire-presque-parfait" },
-            { label: "Conférences", href: "/projets/conferences" },
+            { label: "Métiers de rêve", href: "/projets/metiers-de-reve" },
             { label: "The Patch", href: "/projets/the-patch" },
             { label: "Paris Creator Week", href: "/projets/paris-creator-week" },
+            { label: "Conférences", href: "/projets/conferences" },
+            { label: "Un Stagiaire presque parfait", href: "/projets/un-stagiaire-presque-parfait" },
+            { label: "The Unicorn", href: "/projets/the-unicorn" },
+            { label: "Faites découvrir votre entreprise", href: "/projets/faites-decouvrir-votre-entreprise" },
+            { label: "Break Poverty", href: "/projets/break-poverty" },
+            { label: "Tournée des écoles", href: "/projets/tournee-des-ecoles" },
         ],
     },
     { label: "Partenaires", href: "/partenaires" },
@@ -28,7 +29,7 @@ const MENU_ITEMS = [
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [openSubmenu, setOpenSubmenu] = useState<string | null>("Écosystème"); // Open by default or null
+    const [openSubmenu, setOpenSubmenu] = useState<string | null>("Nos initiatives"); // Open by default or null
 
     return (
         <>
@@ -38,9 +39,10 @@ export function Navbar() {
                 </Link>
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="text-sm font-mono border border-white/20 px-4 py-2 rounded-full uppercase hover:bg-white hover:text-black transition-all cursor-pointer"
+                    className="flex items-center justify-center p-2 text-white hover:text-accent transition-colors cursor-pointer"
+                    aria-label="Ouvrir le menu"
                 >
-                    Menu
+                    <Menu className="w-7 h-7 md:w-8 md:h-8" />
                 </button>
             </nav>
 
