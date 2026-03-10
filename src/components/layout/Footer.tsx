@@ -23,11 +23,16 @@ export function Footer() {
                         <input
                             type="text"
                             placeholder="Prénom"
+                            maxLength={80}
+                            pattern="^[a-zA-ZÀ-ÿ\s\\-']+$"
+                            autoComplete="given-name"
                             className="flex-1 bg-white p-4 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-black"
                         />
                         <input
                             type="email"
                             placeholder="Email"
+                            maxLength={255}
+                            autoComplete="email"
                             className="flex-1 bg-white p-4 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-black"
                         />
                     </div>

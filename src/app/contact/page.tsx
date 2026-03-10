@@ -95,6 +95,9 @@ export default function ContactPage() {
                                             type="text"
                                             id="name"
                                             required
+                                            maxLength={80}
+                                            pattern="^[a-zA-ZÀ-ÿ\s\\-']+$"
+                                            autoComplete="name"
                                             className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-4 pl-12 text-white placeholder:text-white/20 focus:outline-none focus:border-accent/50 focus:bg-accent/5 transition-all"
                                             placeholder="Votre Nom"
                                         />
@@ -108,6 +111,8 @@ export default function ContactPage() {
                                             type="email"
                                             id="email"
                                             required
+                                            maxLength={255}
+                                            autoComplete="email"
                                             className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-4 pl-12 text-white placeholder:text-white/20 focus:outline-none focus:border-accent/50 focus:bg-accent/5 transition-all"
                                             placeholder="votre@email.com"
                                         />
@@ -138,6 +143,7 @@ export default function ContactPage() {
                                     id="message"
                                     required
                                     rows={4}
+                                    maxLength={3000}
                                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-accent/50 focus:bg-accent/5 transition-all resize-none"
                                     placeholder="Dites-nous en plus sur votre projet..."
                                 />
