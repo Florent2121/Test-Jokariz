@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, TrendingUp, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/projects";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
@@ -27,13 +27,13 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
     return (
         <main className="min-h-screen bg-background">
             {/* Hero Section */}
-            <section className="relative pt-20 pb-4 md:pt-32 md:pb-8 flex flex-col items-center justify-center overflow-hidden">
+            <section className="relative pt-16 pb-2 md:pt-24 md:pb-4 flex flex-col items-center justify-center overflow-hidden">
                 {/* Background Gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
                 <SectionWrapper>
-                    <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+                    <div className="relative z-10 text-center max-w-4xl mx-auto space-y-4">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -41,10 +41,6 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                         >
                             <span className="px-4 py-1.5 rounded-full border border-white/10 bg-surface text-sm font-mono uppercase tracking-widest text-secondary">
                                 {project.category}
-                            </span>
-                            <span className="w-1 h-1 rounded-full bg-white/20" />
-                            <span className="text-sm font-mono text-secondary">
-                                {project.year}
                             </span>
                         </motion.div>
 
@@ -71,18 +67,20 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
 
             {/* Content Section */}
             <SectionWrapper className="pb-24">
-                <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-12 items-start">
+                <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-start">
                     {/* Left: Description & Stats */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="space-y-12"
+                        className="space-y-8"
                     >
                         <div className="prose prose-invert prose-lg">
-                            <p className="text-primary text-xl md:text-2xl leading-relaxed mb-8 font-medium whitespace-pre-line">
-                                {project.longDescription}
-                            </p>
+                            {project.longDescription && (
+                                <p className="text-primary text-xl md:text-2xl leading-relaxed mb-8 font-medium whitespace-pre-line">
+                                    {project.longDescription}
+                                </p>
+                            )}
 
                             {project.bullets && (
                                 <div className="text-secondary text-base md:text-lg mb-8 bg-surface p-6 border border-white/5 whitespace-pre-line leading-relaxed">
@@ -94,6 +92,20 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                                 <p className="text-secondary text-base md:text-lg border-l-2 border-accent pl-4 whitespace-pre-line">
                                     {project.subText}
                                 </p>
+                            )}
+ 
+                            {project.videoUrl && (
+                                <div className="mt-8">
+                                    <Link
+                                        href={project.videoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 text-accent hover:text-white transition-colors group"
+                                    >
+                                        <Play className="w-5 h-5 fill-accent group-hover:fill-white" />
+                                        <span className="font-display font-bold uppercase tracking-widest text-sm">Voir la vidéo exemple</span>
+                                    </Link>
+                                </div>
                             )}
                         </div>
 
@@ -119,15 +131,19 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
                             </div>
                         )}
 
-                        <div className="pt-8">
-                            <Link
-                                href="/contact"
-                                className="group inline-flex items-center justify-center font-display font-bold uppercase tracking-widest transition-all duration-500 rounded-full bg-accent text-white border border-transparent shadow-[0_0_20px_rgba(0,85,255,0.4)] hover:shadow-[0_0_40px_rgba(0,85,255,0.6)] hover:bg-white hover:text-black px-6 py-3 text-sm md:text-base gap-2"
-                            >
-                                En savoir plus
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                        </div>
+                        {(project.externalLink || (!["metiers-de-reves", "paris-creator-week", "un-stagiaire-presque-parfait", "the-unicorn", "break-poverty", "tournee-des-ecoles"].includes(project.slug))) && (
+                            <div className="pt-8">
+                                <Link
+                                    href={project.externalLink || "/contact"}
+                                    target={project.externalLink?.startsWith("http") ? "_blank" : undefined}
+                                    rel={project.externalLink?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                    className="group inline-flex items-center justify-center font-display font-bold uppercase tracking-widest transition-all duration-500 rounded-full bg-accent text-white border border-transparent shadow-[0_0_20px_rgba(0,85,255,0.4)] hover:shadow-[0_0_40px_rgba(0,85,255,0.6)] hover:bg-white hover:text-black px-6 py-3 text-sm md:text-base gap-2"
+                                >
+                                    {project.externalLinkLabel || "En savoir plus"}
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
+                        )}
                     </motion.div>
 
                     {/* Right: Image */}

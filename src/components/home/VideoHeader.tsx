@@ -2,20 +2,52 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export function VideoHeader() {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        // Force playback parameters securely
+        video.muted = true;
+        video.defaultMuted = true;
+        video.play().catch(() => {});
+
+        let animationFrameId: number;
+
+        // Optimized Loop: requestAnimationFrame checks the time 60x/second.
+        // It skips the last 0.05s of the video to avoid the classic black flash frame at the end of MP4s.
+        const checkLoop = () => {
+            if (video.duration && video.currentTime >= video.duration - 0.05) {
+                video.currentTime = 0;
+            }
+            animationFrameId = requestAnimationFrame(checkLoop);
+        };
+
+        animationFrameId = requestAnimationFrame(checkLoop);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
     return (
         <section className="relative h-screen w-full overflow-hidden bg-black flex flex-col items-center justify-center">
             {/* Background Video */}
             <video
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="absolute inset-0 w-full h-full object-cover opacity-60"
+                disablePictureInPicture
+                className="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
             >
-                {/* Fallback to mp4 type even though it's mov, sometimes browsers handle it better, or omit type */}
-                <source src="/vid%C3%A9o/vide%CC%81o%20accueil.mov" />
+                {/* Correctly mapped to the real file name */}
+                <source src="/vid%C3%A9o/Vid%C3%A9o%20site2.mp4.mov" type="video/mp4" />
                 Votre navigateur ne supporte pas la balise vidéo.
             </video>
 

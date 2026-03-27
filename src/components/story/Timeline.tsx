@@ -16,54 +16,36 @@ export const TIMELINE_STEPS: TimelineStep[] = [
     {
         year: "1991",
         title: "UNE ENFANCE ULTRA PRIVILÉGIÉE",
-        description: `Je grandis entre Neuilly-sur-Seine et le 16ᵉ arrondissement de Paris.
-Ma scolarité se déroule dans un environnement privilégié, au sein d’un établissement élitiste.
-Les trajectoires sont connues, les attentes explicites.
-On apprend tôt comment les choses fonctionnent.
-En arrière-plan, une idée se construit en moi:
-faire quelque chose d’utile pour la société.`
-        ,
-        image: "/images/projects/conferences.jpg",
+        description: `Entre Neuilly-sur-Seine et le 16ᵉ arrondissement de Paris, Marc va avoir une enfance ultra privilégiée. À Franklin (collège / lycée), il va côtoyer des fils et filles de milliardaires et de grands patrons du CAC 40. Mais il va aussi bénéficier de l’enseignement jésuite et c’est là qu'une graine se plante : faire quelque chose d’utile pour la société.`,
+        image: "/images/Timeline/jokariz enfant.png",
     },
     {
         year: "2011",
         title: "UNE RENTRÉE À L’ESCP",
-        description: `Après un parcours scolaire irrégulier, je décide de m’engager davantage dans le travail. La classe préparatoire impose un rythme, une méthode, une discipline. J’intègre ensuite l’ESCP.`,
+        description: `Ce parcours ultra privilégié le conduit logiquement à faire une classe préparatoire à Saint Jean de Passy puis à intégrer l’ESCP.`,
 
         image: "/images/projects/jokacorp.png",
     },
     {
         year: "2015",
         title: "LA RÉUSSITE COMME POINT DE BASCULE",
-        description: `À 25 ans, je décroche un poste de structurer après m’être invité à des entretiens où je n’étais pas attendu, une première pour un étudiant d’école de commerce.
-        J’intègre ensuite Goldman Sachs à New York.
-Un cadre clair, structuré, exigeant.
-La réussite y est lisible, mesurable.
-Avec le temps, une forme de décalage apparaît chez moi.
-Le système fonctionne.
-Le sens, moins.`,
-        image: "/images/projects/un-stagiaire-presque-parfait.jpg",
+        description: `À 23 ans, après un stage en structuration (ingénieur en salle de marché) chez BNP Paribas, Marc décroche un job chez Goldman Sachs qu’il considère à l’époque comme le graal absolu. Il y gravit les échelons rapidement et devient Vice Président en seulement 5 ans.`,
+        image: "/images/projects/un-stagiaire-presque-parfait.png",
 
     },
     {
         year: "2022",
         title: `UN NOUVEAU TERRAIN DE JEU`,
-        description: `Après 7 ans de travail, je quitte Goldman Sachs.
-Sans repères traditionnels, les jeux vidéos deviennent un espace d’apprentissage inattendu.
-Dans League of Legends, les règles sont claires, les classements transparents, les efforts mesurables.
-Ce challenge m’amène à atteindre le rang Master, soit le top 0,5 % des joueurs dans le monde, un accomplissement distinct de tout ce que j’avais connu jusqu’ici.`,
+        description: `Après 7 ans chez Goldman Sachs, Marc va décider de quitter cet environnement vide de sens à ses yeux. Il veut construire quelque chose d’ambitieux, d’utile.
+Son prochain challenge il le trouve dans la Creator Economy et plus particulièrement dans les jeux vidéo. Pendant un an, il s’entraîne dur et il finit par atteindre le rang de Master sur League of Legends (top 0.5% sur 125 millions de joueurs). Cette expérience dans les jeux vidéo est extrêmement structurante pour Marc, c’est la qu’il dit avoir le plus appris de sa vie. Ça n’est pas un hasard d’ailleurs s’il décide de conserver son nom de gamer : c’est la que Marc devient Jokariz.`,
         image: "/images/projects/paris-creator-week.png",
     },
     {
         year: "2023",
-        title: "MÉTIER DE RÊVE",
-        description: `En parcourant les écoles pour raconter mon histoire, je fais un constat simple :
-beaucoup d’étudiants manquent de repères pour comprendre les réalités du marché du travail.
+        title: "MÉTIERS DE RÊVES",
+        description: `Un des grands facteurs d’inégalités des chances est l’asymétrie de l’accès à l’information. 
 
-Métiers de Rêve naît de ce besoin de compréhension.
-Comment certaines carrières se construisent.
-Ce qui relève du choix, du contexte ou des opportunités initiales.
-Mettre des mots sur des parcours souvent idéalisés.`,
+Dans Métiers de Rêve, Jokariz démystifie les métiers les plus élitistes pour que chacun(e) ait une chance d’y accéder.`,
         image: "/images/projects/jokacorp.png",
 
     },
@@ -74,7 +56,7 @@ Mettre des mots sur des parcours souvent idéalisés.`,
 Moi-même au cœur de ces échanges, je réalise qu’un point de rencontre commun manque.
 La Paris Creator Week naît de ce besoin :
 rassembler les créateurs, les plateformes, les marques, et offrir un cadre pour se rencontrer, échanger et prendre du recul.`,
-        image: "/images/projects/paris-creator-week.JPG",
+        image: "/images/Timeline/Paris%20creator%20week.png",
 
     },
     {
@@ -83,7 +65,7 @@ rassembler les créateurs, les plateformes, les marques, et offrir un cadre pour
         description: `En échangeant avec les étudiants et les jeunes actifs, une frustration revient souvent : l’accès aux opportunités est flou, parfois décourageant, les critères rarement expliqués.
 Je décide alors de rendre visibles les règles du jeu.
 Analyser des CV, simuler des entretiens, et ouvrir l’accès à une première opportunité.`,
-        image: "/images/projects/un-stagiaire-presque-parfait.jpg",
+        image: "/images/projects/un-stagiaire-presque-parfait.png",
 
     },
     {
@@ -117,20 +99,20 @@ export function Timeline() {
     return (
         <section ref={containerRef} className="relative w-full">
             {/* Central Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden md:block" />
-            <div className="absolute left-[20px] top-0 bottom-0 w-px bg-white/10 md:hidden" />
+            <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white -translate-x-1/2 hidden md:block" />
+            <div className="absolute left-[20px] top-0 bottom-0 w-[2px] bg-white md:hidden" />
 
             {/* Progress Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden md:block">
+            <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 hidden md:block">
                 <motion.div
                     style={{ scaleY: scrollYProgress }}
-                    className="absolute top-0 left-0 w-full bg-accent origin-top h-full"
+                    className="absolute top-0 left-0 w-full bg-white origin-top h-full shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                 />
             </div>
-            <div className="absolute left-[20px] top-0 bottom-0 w-px md:hidden">
+            <div className="absolute left-[20px] top-0 bottom-0 w-[2px] md:hidden">
                 <motion.div
                     style={{ scaleY: scrollYProgress }}
-                    className="absolute top-0 left-0 w-full bg-accent origin-top h-full"
+                    className="absolute top-0 left-0 w-full bg-white origin-top h-full shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                 />
             </div>
 
@@ -157,7 +139,7 @@ function TimelineItem({ step, index }: { step: TimelineStep; index: number }) {
     // Shared Content Blocks to enforce DRY principle
     const ImageContent = (
         <motion.div style={{ y }} className="w-full space-y-4">
-            <div className={`relative aspect-[4/3] w-full md:w-[80%] rounded-3xl overflow-hidden border border-white/5 ${isEven ? 'md:ml-auto' : 'md:mr-auto'}`}>
+            <div className={`relative aspect-[4/3] w-full md:w-[80%] overflow-hidden border border-white/5 ${isEven ? 'md:ml-auto' : 'md:mr-auto'}`}>
                 <Image
                     src={step.image}
                     alt={step.title}

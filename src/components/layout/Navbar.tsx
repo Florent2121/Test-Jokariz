@@ -12,7 +12,7 @@ const MENU_ITEMS = [
         label: "Nos initiatives",
         href: "/projets",
         children: [
-            { label: "Métiers de rêve", href: "/projets/metiers-de-reve" },
+            { label: "Métiers de rêves", href: "/projets/metiers-de-reves" },
             { label: "The Patch", href: "/projets/the-patch" },
             { label: "Paris Creator Week", href: "/projets/paris-creator-week" },
             { label: "Conférences", href: "/projets/conferences" },

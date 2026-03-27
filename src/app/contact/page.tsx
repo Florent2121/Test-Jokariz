@@ -3,10 +3,28 @@
 import { motion } from "framer-motion";
 import { Send, Mail, User, MessageSquare, ArrowRight } from "lucide-react";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ContactPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-background pt-32 text-center text-white">Chargement...</div>}>
+            <ContactForm />
+        </Suspense>
+    );
+}
+
+function ContactForm() {
+    const searchParams = useSearchParams();
     const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
+    const [subject, setSubject] = useState("");
+
+    useEffect(() => {
+        const sub = searchParams.get("subject");
+        if (sub) {
+            setSubject(sub);
+        }
+    }, [searchParams]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -126,12 +144,17 @@ export default function ContactPage() {
                                 <div className="relative">
                                     <select
                                         id="subject"
+                                        value={subject}
+                                        onChange={(e) => setSubject(e.target.value)}
                                         className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-4 pl-12 text-white/80 focus:outline-none focus:border-accent/50 focus:bg-accent/5 transition-all appearance-none cursor-pointer"
                                     >
-                                        <option className="bg-zinc-900 text-white">Devenir Partenaire</option>
-                                        <option className="bg-zinc-900 text-white">Proposer une Conférence</option>
-                                        <option className="bg-zinc-900 text-white">Candidat saison 2 de THE UNICORN</option>
-                                        <option className="bg-zinc-900 text-white">Autre</option>
+                                        <option value="" disabled className="bg-zinc-900 text-white">Choisir un sujet</option>
+                                        <option value="Devis pour une conférence" className="bg-zinc-900 text-white">Devis pour une conférence</option>
+                                        <option value="Faites découvrir votre entreprise" className="bg-zinc-900 text-white">Faites découvrir votre entreprise</option>
+                                        <option value="Devenir Partenaire" className="bg-zinc-900 text-white">Devenir Partenaire</option>
+                                        <option value="Proposer une Conférence" className="bg-zinc-900 text-white">Proposer une Conférence</option>
+                                        <option value="Candidat saison 2 de THE UNICORN" className="bg-zinc-900 text-white">Candidat saison 2 de THE UNICORN</option>
+                                        <option value="Autre" className="bg-zinc-900 text-white">Autre</option>
                                     </select>
                                     <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
                                 </div>

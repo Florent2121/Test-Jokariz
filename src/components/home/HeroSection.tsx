@@ -24,7 +24,7 @@ export function HeroSection() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="flex flex-col items-start text-left md:w-3/5 space-y-6 z-20 max-w-full"
                 >
-                    <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tight uppercase text-primary leading-[0.9]">
+                    <h1 className="font-display text-[2.75rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-tight uppercase text-primary leading-[1.05]">
                         <span className="block">UNE MISSION :</span>
                         <span className="block">RENDRE</span>
                         <span className="block">LE SUCCÈS</span>
@@ -32,7 +32,7 @@ export function HeroSection() {
                         <span className="block text-accent">À TOUS</span>
                     </h1>
                     <p className="text-base md:text-lg text-secondary leading-relaxed max-w-lg">
-                        De Goldman Sachs à la Creator Economy.
+                        Ex Vice President de Goldman Sachs devenu <br /> serial entrepreneur.
                     </p>
                     <Button href="/contact" variant="primary">
                         Nous contacter
@@ -64,6 +64,8 @@ export function HeroSection() {
                     </motion.div>
                 </div>
             </div>
+            {/* Visual Fade (fondu) to seamlessly blend into EcosystemSection below */}
+            <div className="absolute bottom-0 left-0 w-full h-24 md:h-48 bg-gradient-to-t from-background via-background/80 to-transparent z-30 pointer-events-none" />
         </section>
     );
 }

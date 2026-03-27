@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
@@ -10,10 +10,30 @@ import { Timeline } from "@/components/story/Timeline";
 
 export default function StoryPage() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end end"],
     });
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        video.muted = true;
+        video.defaultMuted = true;
+        video.play().catch(() => { });
+
+        const handleTimeUpdate = () => {
+            if (video.currentTime > video.duration - 0.2) {
+                video.currentTime = 0;
+                video.play();
+            }
+        };
+
+        video.addEventListener("timeupdate", handleTimeUpdate);
+        return () => video.removeEventListener("timeupdate", handleTimeUpdate);
+    }, []);
 
     return (
         <main ref={containerRef} className="bg-background min-h-screen pb-40">
@@ -61,7 +81,7 @@ export default function StoryPage() {
                         {/* Text on the Right -> DOES NOT OVERLAP (Stays above) */}
                         <div className="order-2 md:order-2 relative z-20 pb-8 md:pb-16 lg:pb-20 lg:pl-16">
                             <p className="text-secondary text-base md:text-lg leading-relaxed max-w-sm">
-                                Jokariz est ancien trader chez Goldman Sachs devenu entrepreneur et créateur de contenu. Il anime Métiers de Rêve, un podcast qui décrypte les trajectoires de personnalités à fort impact pour rendre accessibles les carrières d’exception.
+                                Un des grands facteurs d’inégalités des chances est l’asymétrie de l’accès à l’information. Dans Métiers de Rêve, Jokariz démystifie les métiers les plus élitistes pour que chacun(e) ait une chance d’y accéder.
                             </p>
                         </div>
 
@@ -72,13 +92,15 @@ export default function StoryPage() {
                 <div className="relative w-full px-4 md:px-8 lg:px-12 -mt-10 md:-mt-16 lg:-mt-20 z-10 pointer-events-none">
                     <div className="w-full aspect-video md:h-[65vh] relative overflow-hidden md:rounded-xl shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
                         <video
+                            ref={videoRef}
                             autoPlay
-                            loop
                             muted
                             playsInline
+                            preload="auto"
+                            disablePictureInPicture
+                            src="/vid%C3%A9o/Vid%C3%A9o%20site2.mp4.mov"
                             className="absolute inset-0 w-full h-full object-cover opacity-90"
                         >
-                            <source src="/vid%C3%A9o/vide%CC%81o%20accueil.mov" />
                             Votre navigateur ne supporte pas la balise vidéo.
                         </video>
                         <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
@@ -115,7 +137,7 @@ export default function StoryPage() {
                                 À travers ses différentes activités, il accompagne ponctuellement des initiatives portées par de jeunes fondateurs et soutient des projets en lien avec l’orientation, la finance et l’employabilité des nouvelles générations.
                             </p>
                             <p className="text-secondary text-base md:text-lg leading-relaxed">
-                                En parallèle du podcast Métiers de Rêve, il développe progressivement des projets à l’intersection du contenu, de la pédagogie et de l’entrepreneuriat.
+                                En parallèle du podcast Métiers de Rêves, il développe progressivement des projets à l’intersection du contenu, de la pédagogie et de l’entrepreneuriat.
                             </p>
                         </div>
 
