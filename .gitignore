@@ -34,8 +34,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Large media files (to prevent GitHub push errors)
-public/vidéo/
-public/vid*o/
-*.mov
-*.mp4
